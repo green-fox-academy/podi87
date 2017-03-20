@@ -1,0 +1,26 @@
+.box1 {
+  width: 351px;
+  font-size: 36px;
+  font-family: sans-serif;
+  border: 16px solid #4285f4;
+  margin-bottom: 4px;
+}
+.box2 {
+  width: 351px;
+  font-size: 36px;
+  font-family: sans-serif;
+  border: 16px solid #4285f4;
+  margin-top: 4px;
+}
+.box1 p {
+  color: white;
+  margin: 0px;
+  padding: 44px 145px 45px 129px;
+  background-color: #e67676;
+}
+.box2 p {
+  color: white;
+  margin: 0px;
+  padding: 44px 145px 45px 129px;
+  background-color: #A9E6E6;
+}

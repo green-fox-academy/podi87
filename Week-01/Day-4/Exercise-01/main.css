@@ -1,0 +1,30 @@
+.boxes {
+  width: 367px;
+}
+.Velox {
+  font-size: 36px;
+  font-family: sans-serif;
+  color: #005566;
+  background-color: #0e91a1;
+  margin: 0px 0px 8px 0px;
+  padding: 17px 255px 74px 16px;
+  border: 5px solid #7dce94;
+}
+.Zerda {
+  font-size: 36px;
+  font-family: sans-serif;
+  color: #005566;
+  background-color: #0e91a1;
+  margin: 16px 0px 8px 0px;
+  padding: 17px 255px 74px 16px;
+  border: 5px solid #7dce94;
+}
+.Lagopus {
+  font-size: 36px;
+  font-family: sans-serif;
+  color: #005566;
+  background-color: #0e91a1;
+  margin: 17px 0px 8px 0px;
+  padding: 22px 255px 74px 16px;
+  border: 5px solid #7dce94;
+}

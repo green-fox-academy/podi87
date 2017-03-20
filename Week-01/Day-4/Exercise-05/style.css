@@ -1,0 +1,28 @@
+div {
+  width: 255px;
+  border: 1px solid black;
+}
+h1 {
+  margin-top: 24px;
+  margin-left: 50px;
+  margin-right: 147px;
+  margin-bottom: 0px;
+  color: blue;
+}
+h2 {
+  margin-left: 50px;
+  color: #f7a422;
+}
+p {
+  margin-left: 50px;
+}
+.main li {
+  margin-left: 50px;
+  color: blue;
+}
+.fruit li {
+  color: black;
+}
+.vegetable li {
+  color: black;
+}

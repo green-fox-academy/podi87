@@ -1,0 +1,219 @@
+body {
+  background: url(pictures/picture3.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: linear-gradient();
+}
+
+main {
+  font-family: 'Libre Franklin', sans-serif;
+  color: rgba(255,255,0,.9);
+}
+
+main h1 {
+  font-family:  SW, sans-serif;
+  padding-left: 15px
+}
+
+@font-face {
+  font-family: "SW";
+  src: url('fonts/starjhol.ttf');
+}
+
+@font-face {
+  font-family: "SW1";
+  src: url('fonts/starjedi.ttf');
+}
+
+.profile {
+  position: absolute;
+  left: 1530px;
+  border: 2px solid yellow;
+  border-radius: 15px;
+  display: inline-block;
+}
+
+.profile :hover {
+  transition: top .5s, left .5s, box-shadow .5s;
+  right: 10px;
+  top: 10px;
+}
+
+.beginning {
+  background-color: rgba(0,0,0,.3);
+  font-size: 40px;
+  margin-right: 200px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+.beginning h1 {
+  font-family: 'Libre Franklin', sans-serif !important;
+}
+
+.biography {
+  background-color: rgba(0,0,0,.5);
+  width: 700px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
+  border: 1px solid rbga(0,0,0,.1);
+  border-radius: 15px;
+}
+
+.biography h1 {
+  font-size: 30px;
+  background-color: rgba(0,0,0,.6);
+  margin-top: 0;
+  border: 1px solid rbga(0,0,0,.1);
+  border-radius: 10px;
+}
+
+.biography dt {
+  text-decoration: underline;
+  padding-bottom: 17px;
+}
+
+.biography dd {
+  padding-bottom: 18px;
+}
+
+main span:hover {
+  color: red;
+  font-family: SW1, sans-serif;
+}
+
+pre {
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+.education {
+  background-color: rgba(0,0,0,.5);
+  width: 700px;
+  display: inline-block;
+  margin-left: 105px;
+  margin-top: 10px;
+  border: 1px solid rbga(0,0,0,.1);
+  border-radius: 15px;
+}
+
+.education h1 {
+  font-size: 30px;
+  background-color: rgba(0,0,0,.6);
+  margin-top: 0;
+  border: 1px solid rbga(0,0,0,.1);
+  border-radius: 15px;
+}
+
+.education li {
+  padding: 5px;
+}
+
+.prof{
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+.exp h1 {
+  font-size: 30px;
+  background-color: rgba(0,0,0,.6);
+  margin-top: 0;
+  border: 1px solid rbga(0,0,0,.1);
+  border-radius: 15px;
+}
+
+.exp li {
+  padding: 5px;
+}
+
+.exp {
+  background-color: rgba(0,0,0,.3);
+  width: 700px;
+  font-size: 24px;
+  display: inline-block;
+  margin-top: 10px;
+  vertical-align: top;
+  border: 1px solid rbga(0,0,0,.1);
+  border-radius: 15px;
+}
+
+.battles {
+  background-color: rgba(0,0,0,.3);
+  width: 700px;
+  font-size: 24px;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 105px;
+  margin-top: 10px;
+  padding-bottom: 68px;
+  border: 1px solid rbga(0,0,0,.1);
+  border-radius: 15px;
+}
+
+.battles li {
+  padding: 5px;
+}
+
+.battles h1 {
+  font-size: 30px;
+  background-color: rgba(0,0,0,.6);
+  margin-top: 0;
+  border: 1px solid rbga(0,0,0,.1);
+  border-radius: 15px;
+}
+
+a {
+  color: rgba(255, 0, 0, 0.5);
+  padding: 5px;
+}
+
+.block {
+  display: inline-flex;
+}
+
+.share a {
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  text-indent: 110%;
+  overflow: hidden;
+  background-size: contain;
+  position: relative;
+  transition: top .5s, left .5s, box-shadow .5s;
+  box-shadow: 0 0 0 grey;
+  top: 0px;
+  left: 0px;
+  margin-top: 280px;
+  border-radius: 7px;
+}
+
+.share a:hover {
+  top: -5px;
+  left: -5px;
+  box-shadow: 5px 5px 0 yellow;
+}
+
+.facebook {
+  background-image: url(pictures/face.svg);
+  background-size: contain;
+  margin-left: 20px;
+}
+
+.twitter {
+  background-image: url(pictures/tweet.svg);
+  background-size: contain;
+  margin-left: 10px;
+}
+p {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: 300px;
+  padding: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+p a {
+  text-decoration: none;
+  color: yellow;
+}

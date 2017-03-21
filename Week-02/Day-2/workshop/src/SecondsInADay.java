@@ -9,6 +9,6 @@ public class SecondsInADay {
     int allcurrentSeconds = (currentSeconds + currentMinutes + currentHours);
     int allSecondsADay = (3600 * 24);
     System.out.println(allSecondsADay - allcurrentSeconds);
-    
+
   }
  }

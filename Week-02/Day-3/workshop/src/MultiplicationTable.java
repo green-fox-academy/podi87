@@ -5,19 +5,20 @@ import java.util.Scanner;
  */
 public class MultiplicationTable {
   public static void main(String[] args) {
+    int ui = 0;
+
     Scanner scan = new Scanner(System.in);
-    System.out.println("Please type a number between 10 and 20: ");
-    int ui = scan.nextInt();
-    if (ui >= 10 && ui <= 20) {
+    while (ui < 10 || ui > 20) {
+
+      System.out.println("Please type a number between 10 and 20: ");
+      ui = scan.nextInt();
+      if (ui < 10 || ui > 20) {
+        System.out.println("Error, try again!");}
+    }
       for (int i = 1; i < 11; i++) {
         System.out.println(i + " * " + ui + " = " + (i * ui));
       }
     }
-    else {
-        System.out.println("Please type a number according to the conditions above");
-      }
-
-      }
-    }
+  }
 
 

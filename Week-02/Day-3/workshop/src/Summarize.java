@@ -7,8 +7,8 @@ public class Summarize {
    int summarize = 0;
 
     for (int i = 0; i < sum.length; i++) {
-      summarize += sum[i];
-      System.out.println(summarize);
+      summarize=summarize+sum[i];
     }
+    System.out.println(summarize);
   }
 }

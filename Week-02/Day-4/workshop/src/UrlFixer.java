@@ -16,7 +16,7 @@ public class UrlFixer {
       newrl.setCharAt(38, 'o');
       newrl.setCharAt(39, 'd');
       newrl.setCharAt(40, 'd');
-    
+
     System.out.println(newrl);
   }
 }

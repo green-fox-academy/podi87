@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 /**
- * Created by Asus on 2017-03-23.
+ * Created by Asus on 2017-03-24.
  */
 public class Anagram {
   public static void main(String[] args) {
@@ -15,14 +15,11 @@ public class Anagram {
     String word1 = ui1.toLowerCase();
     String word2 = ui2.toLowerCase();
 
-    Anagram anagram = new Anagram();
-
-    if (anagram.equal(word1, word2)) {
+    if (equal(word1, word2)) {
       System.out.println("True - These words are anagrams.");
     } else {
       System.out.println("False - These words are not anagrams.");
     }
-
   }
   public static boolean equal (String word1, String word2) {
 

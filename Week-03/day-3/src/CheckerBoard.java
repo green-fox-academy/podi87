@@ -9,7 +9,7 @@ public class CheckerBoard {
     int x = 0;
     int w = 30;
     int h = 30;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 50; i++) {
       x = 0;
       for (int j = 0; j < 5; j++) {
         graphics.setColor(Color.black);

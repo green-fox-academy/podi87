@@ -27,15 +27,20 @@ public class Drawing {
     graphics.setColor(Color.GREEN);
     graphics.drawLine(300, 0, 0, 300);
 //PART 4 - // drawing lines function
+    int x1 = 30;
+    int x2 = 50;
    for (int i = 0; i < 3; i++){
+     int a = (int) (Math.random() * 301);
+     int b = (int) (Math.random() * 301);
      graphics.setColor(Color.BLACK);
-     drawLines(graphics);
+     drawLines(graphics, a, b);
    }
+
   }
-  public static void drawLines(Graphics g) {
-    int x = (int) (Math.random() * 301);
-    int y = (int) (Math.random() * 301);
-    g.drawLine(x, y, 150, 150);
+  public static void drawLines(Graphics g, int x1, int y1){
+    int x2 = 150;
+    int y2 = 150;
+    g.drawLine(x1, y1, x2, y2);
   }
 
   public static void main(String[] args) {

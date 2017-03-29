@@ -7,25 +7,22 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class LinePlay {
   public static void mainDraw(Graphics graphics) {
     int x1 = 0;
-    int y1 = 0;
-    int x2 = 300;
     int y2 = 0;
     while (y2 < 300 && x1 < 300) {
       graphics.setColor(new Color(177, 70, 244));
-      drawLines(graphics, x1, y1, x2, y2);
+      drawLines(graphics, x1, 0, 300, y2);
       y2 += 20;
       x1 += 20;
     }
-    int X1 = 0;
     int Y1 = 0;
     int X2 = 0;
-    int Y2 = 300;
     while (Y1 < 300 && X2 < 300) {
       graphics.setColor(Color.green);
-      drawLines(graphics, X1, Y1, X2, Y2);
+      drawLines(graphics, 0, Y1, X2, 300);
       Y1 += 20;
       X2 += 20;
     }
+//  Other way
 //    graphics.setColor(Color.GREEN);
 //    for(int i = 0; i < 300; i += 20) {
 //      graphics.setColor(Color.GREEN);

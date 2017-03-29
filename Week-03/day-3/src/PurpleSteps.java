@@ -3,16 +3,18 @@ import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class FillWithRectangles {
+public class PurpleSteps {
   public static void mainDraw(Graphics graphics) {
-    graphics.setColor(Color.green);
-    graphics.drawRect(145,145, 10,10);
-    graphics.setColor(Color.blue);
-    graphics.drawRect(130,130, 40,40);
-    graphics.setColor(Color.black);
-    graphics.drawRect(120,120, 60,60);
-    graphics.setColor(Color.red);
-    graphics.drawRect(90,90, 120,120);
+    int x = 10;
+    int y = 10;
+    for (int i = 0; i < 20; i++) {
+      graphics.setColor(new Color(177,70,244));
+      graphics.fillRect(x, y, 10, 10);
+      graphics.setColor(Color.black);
+      graphics.drawRect(x, y, 10, 10);
+      x += 10;
+      y += 10;
+    }
   }
   public static void main(String[] args) {
     JFrame jFrame = new JFrame("Drawing");

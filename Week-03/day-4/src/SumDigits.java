@@ -5,12 +5,12 @@ public class SumDigits {
     System.out.println(sumDig(number1));
   }
   public static int sumDig(int n) {
-    int temp = (n) - (n % 10);
-    int div = temp / 10;
-    if (n < 10 || n == 0) {
-      return n;
+    int right = n % 10;
+    int left = n / 10;
+    if (left == 0) {
+      return right;
     } else {
-      return div;
+      return right + sumDig (left);
     }
   }
 }

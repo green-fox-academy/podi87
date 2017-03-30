@@ -3,7 +3,7 @@
  */
 public class Counter {
   public static void main(String[] args) {
-   int number = 120;
+    int number = 120;
     System.out.println(factorialRec(number));
 
   }

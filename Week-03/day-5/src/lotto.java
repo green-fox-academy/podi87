@@ -8,8 +8,10 @@ import java.util.List;
 
 public class lotto {
   public static void main(String[] args) {
+
     Path lotto = Paths.get("lotto.csv");
     Files.isReadable(lotto);
+
     List<String> allNumberList = new ArrayList<>();
     List<Integer> intAllNumList = new ArrayList<>();
     ArrayList<Integer> lottoNumbers = new ArrayList<Integer>(90);
@@ -50,8 +52,8 @@ public class lotto {
       }
       frequency.add(counter);
     }
-
     //System.out.println(frequency);
+    
     getMax(topFive, topFiveI, lottoNumbers, frequency);
     getMax(topFive, topFiveI, lottoNumbers, frequency);
     getMax(topFive, topFiveI, lottoNumbers, frequency);
@@ -61,7 +63,7 @@ public class lotto {
     getMax(topFive, topFiveI, lottoNumbers, frequency);
     getMax(topFive, topFiveI, lottoNumbers, frequency);
     getMax(topFive, topFiveI, lottoNumbers, frequency);
-    System.out.println(getMax(topFive, topFiveI, lottoNumbers, frequency));
+    System.out.println(topFive);
     System.out.println(topFiveI);
   }
     public static List getMax(List<Integer> topFive, List<Integer> topFiveI, ArrayList<Integer> lottoNumbers, List<Integer> frequency) {

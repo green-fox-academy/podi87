@@ -16,6 +16,7 @@ public class lotto {
     List<Integer> frequency = new ArrayList<>(90);
     List<Integer> topFive = new ArrayList<>();
     List<Integer> topFiveI = new ArrayList<>();
+
     try {
       allNumberList = new ArrayList<String>();
       for (String linesAll : Files.readAllLines(Paths.get("lotto.csv"))) {
@@ -29,14 +30,17 @@ public class lotto {
     } catch (IOException e) {
       System.out.println("wrong");
     }
+
     for (String s : allNumberList) {
       intAllNumList.add(Integer.valueOf(s));
     }
-    System.out.println(intAllNumList);
+    //System.out.println(intAllNumList);
+
     for (int i = 1; i < 91; i++) {
       lottoNumbers.add(i);
     }
-    System.out.println(lottoNumbers);
+    //System.out.println(lottoNumbers);
+
     for (int i = 0; i < 90; i++) {
       int counter = 0;
       for (int j = 0; j < intAllNumList.size(); j++) {
@@ -46,7 +50,8 @@ public class lotto {
       }
       frequency.add(counter);
     }
-    System.out.println(frequency);
+
+    //System.out.println(frequency);
     getMax(topFive, topFiveI, lottoNumbers, frequency);
     getMax(topFive, topFiveI, lottoNumbers, frequency);
     getMax(topFive, topFiveI, lottoNumbers, frequency);

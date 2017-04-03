@@ -2,11 +2,11 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class PostIt {
-  String backgroundColor;
+  Color backgroundColor;
   String text;
-  String textColor;
+  Color textColor;
 
-  public PostIt(String backgroundColor, String text, String textColor){
+  public PostIt(Color backgroundColor, String text, Color textColor){
     this.backgroundColor = backgroundColor;
     this.text = text;
     this.textColor = textColor;
@@ -18,9 +18,9 @@ public class PostIt {
   }
   public static void main(String[] args) {
 
-   PostIt idea = new PostIt("orange", "idea 1", "blue");
-   PostIt awesome = new PostIt("pink", "Awesome", "black");
-   PostIt superb = new PostIt("yellow", "superb", "green");
+   PostIt idea = new PostIt(Color.orange, "idea 1", Color.blue);
+   PostIt awesome = new PostIt(Color.pink, "Awesome", Color.black);
+   PostIt superb = new PostIt(Color.yellow, "superb", Color.green);
 
    idea.print();
    awesome.print();

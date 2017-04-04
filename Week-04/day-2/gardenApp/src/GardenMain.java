@@ -7,10 +7,9 @@ public class GardenMain {
     myGarden.addPlant(new Tree("purple"));
     myGarden.addPlant(new Tree("orange"));
     myGarden.status();
-    myGarden.watering1(40);
+    myGarden.watering(40);
     myGarden.status();
-    myGarden.watering2(70);
+    myGarden.watering(70);
     myGarden.status();
-
   }
 }

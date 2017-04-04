@@ -2,20 +2,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Garden{
-  @Override
-  public String toString() {
-    return "Garden{" +
-            "plants=" + plants +
-            '}';
-  }
+
   List<Plant> plants = new ArrayList<>();
-  public void watering1() {
-    for (int i = 0; i < plants.size(); i++)
-      plants.get(i).watering(40/plants.size());
+  public void status(){
+    for (int i = 0; i < plants.size(); i++){
+      plants.get(i).status();
+    }
   }
-  public void watering2(){
+  public void watering1(double wateringAmount) {
     for (int i = 0; i < plants.size(); i++)
-      plants.get(i).watering(70/plants.size());
+      plants.get(i).watering(wateringAmount/plants.size());
+    System.out.println();
+    System.out.println("Watering with " + wateringAmount);
+  }
+  public void watering2(double wateringAmount){
+    for (int i = 0; i < plants.size(); i++)
+      plants.get(i).watering(wateringAmount/plants.size());
+    System.out.println();
+    System.out.println("Watering with " + wateringAmount);
   }
   public Garden(){
     this.plants = new ArrayList<>();

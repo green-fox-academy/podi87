@@ -20,8 +20,6 @@ public class CountLettersTest {
     map.put(testWord.charAt(0), 2);
     map.put(testWord.charAt(1), 2);
     map.put(testWord.charAt(2), 1);
-    map.put(testWord.charAt(3), 2);
-    map.put(testWord.charAt(4), 2);
     map.put(testWord.charAt(5), 1);
   }
   @Test

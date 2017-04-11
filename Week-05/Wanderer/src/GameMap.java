@@ -26,10 +26,22 @@ public class GameMap {
     this.graphics = graphics;
   }
 
-  public void drawMap (Graphics graphicss, int [][] matrix, PositionedImage floorTile, PositionedImage wallTile, java.util.List<Integer> mapX, java.util.List<Integer> mapY) {
+  public int availableMatrixLength (int [][] matrix) {
+    int floorLength = 0;
     for (int row = 0; row < matrix.length; row++) {
       for (int column = 0; column < matrix[row].length; column++) {
         if (matrix[row][column] == 0) {
+          floorLength++;
+        }
+      }
+    }
+    return floorLength;
+  }
+
+  public void drawMap (Graphics graphicss, int [][] matrix, PositionedImage floorTile, PositionedImage wallTile, java.util.List<Integer> mapX, java.util.List<Integer> mapY) {
+    for (int row = 0; row < matrix.length; row++) {
+      for (int column = 0; column < matrix[row].length; column++) {
+        if (matrix[row][column] == 0 || matrix[row][column] == 2) {
           floorTile = new PositionedImage(floor, column * 72, row * 72);
           floorTile.draw(graphics);
           mapX.add(floorTile.posX);

@@ -5,6 +5,7 @@ public class Enemy {
 
   String skeletonName = "skeleton.png";
   int temp;
+  int skeleMove;
   List<Integer> X;
   List<Integer> Y;
   int [][] matrix;
@@ -19,14 +20,16 @@ public class Enemy {
     this.graphics = graphics;
   }
 
-  public void drawSkeleton(Graphics graphics, int [][] matrix, PositionedImage skeleton, List<Integer> X, List<Integer> Y, int temp) {
-    skeleton.posX = X.get(temp);
-    skeleton.posY = Y.get(temp);
+  public void drawSkeleton(Graphics graphics, int [][] matrix, PositionedImage skeleton, List<Integer> X, List<Integer> Y, int temp, int skeleMove) {
+    skeleton.posX = X.get(temp + skeleMove);
+    skeleton.posY = Y.get(temp + skeleMove);
     for (int row = 0; row < matrix.length; row++) {
       for (int column = 0; column < matrix[row].length; column++) {
         if (matrix[row][column] == matrix[skeleton.posY / 72][skeleton.posX / 72]) {
           matrix[skeleton.posY/72][skeleton.posX/72] = 2;
           skeleton.draw(graphics);
+        } else {
+          matrix[skeleton.posY/72][skeleton.posX/72] = 0;
         }
       }
     }

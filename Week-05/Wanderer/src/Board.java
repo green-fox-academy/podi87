@@ -11,6 +11,7 @@ public class Board extends JComponent implements KeyListener {
   Graphics graphics;
   int heroBoxX;
   int heroBoxY;
+  int skeleMove = 0;
   List<Integer> availableX;
   List<Integer> availableY;
   String skeletonName = "skeleton.png";
@@ -29,6 +30,7 @@ public class Board extends JComponent implements KeyListener {
           {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
           {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},};
 
+  Enemy enemy = new Enemy(graphics);
   GameMap gameMap = new GameMap(graphics);
   int temp1 = (int)(Math.random() * gameMap.availableMatrixLength(wallMatrix));
   int temp2= (int)(Math.random() * gameMap.availableMatrixLength(wallMatrix));
@@ -51,15 +53,17 @@ public class Board extends JComponent implements KeyListener {
     Enemy enemy = new Enemy(graphics);
     GameMap gameMap = new GameMap(graphics);
     PositionedImage hero = new PositionedImage(heroPic, heroBoxX, heroBoxY);
-    PositionedImage skeleton = new PositionedImage(skeletonName, 0,0);
+    PositionedImage skeleton = new PositionedImage(skeletonName, 0, 0);
     PositionedImage floorTile = new PositionedImage(floor, 0, 0);
     PositionedImage wallTile = new PositionedImage(wall, 0, 0);
 
     gameMap.drawMap(graphics, wallMatrix, floorTile, wallTile, availableX, availableY);
     hero.draw(graphics);
-    enemy.drawSkeleton(graphics, wallMatrix, skeleton, availableX, availableY, temp1);
-    enemy.drawSkeleton(graphics, wallMatrix, skeleton, availableX, availableY, temp2);
-    enemy.drawSkeleton(graphics, wallMatrix, skeleton, availableX, availableY, temp3);
+    skeleMove += 1;
+    enemy.drawSkeleton(graphics, wallMatrix, skeleton, availableX, availableY, temp1, skeleMove);
+    enemy.drawSkeleton(graphics, wallMatrix, skeleton, availableX, availableY, temp2, skeleMove);
+    enemy.drawSkeleton(graphics, wallMatrix, skeleton, availableX, availableY, temp3, skeleMove);
+
   }
 
   // To be a KeyListener the class needs to have these 3 methods in it

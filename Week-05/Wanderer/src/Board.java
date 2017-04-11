@@ -4,15 +4,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.*;
 import java.util.List;
+import java.util.Map;
 
 public class Board extends JComponent implements KeyListener {
 
   int heroBoxX;
   int heroBoxY;
-  int skeleX;
-  int skeleY;
+  List<Integer> availableX;
+  List<Integer> availableY;
   String skeletonName = "skeleton.png";
   String heroPic = "hero-down.png";
+  String floor = "floor.png";
+  String wall = "wall.png";
   int[][] wallMatrix = new int[][]{
           {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
           {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
@@ -25,7 +28,22 @@ public class Board extends JComponent implements KeyListener {
           {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
           {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},};
 
+  public int availableMatrixLength (int [][] wallMatrix) {
+    int floorLength = 0;
+    for (int row = 0; row < wallMatrix.length; row++) {
+      for (int column = 0; column < wallMatrix[row].length; column++) {
+        if (wallMatrix[row][column] == 0) {
+          floorLength++;
+        }
+      }
+    }
+    return floorLength;
+  }
 
+  int temp1 = (int)(Math.random() * availableMatrixLength(wallMatrix));
+  int temp2= (int)(Math.random() * availableMatrixLength(wallMatrix));
+  int temp3= (int)(Math.random() * availableMatrixLength(wallMatrix));
+  
   public Board() {
     heroBoxX = 0;
     heroBoxY = 0;
@@ -37,34 +55,21 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void paint(Graphics graphics) {
     super.paint(graphics);
-    List<Integer> availableX = new ArrayList<>();
-    List<Integer> availableY = new ArrayList<>();
+
+    availableX = new ArrayList<>();
+    availableY = new ArrayList<>();
     Enemy enemy = new Enemy(graphics);
-
+    GameMap gameMap = new GameMap(graphics);
     PositionedImage hero = new PositionedImage(heroPic, heroBoxX, heroBoxY);
+    PositionedImage skeleton = new PositionedImage(skeletonName, 0,0);
+    PositionedImage floorTile = new PositionedImage(floor, 0, 0);
+    PositionedImage wallTile = new PositionedImage(wall, 0, 0);
 
-
-    for (int row = 0; row < wallMatrix.length; row++) {
-      for (int column = 0; column < wallMatrix[row].length; column++) {
-        if (wallMatrix[row][column] == 0) {
-          PositionedImage floor = new PositionedImage("floor.png", column * 72, row * 72);
-          floor.draw(graphics);
-          availableX.add(floor.posX/72);
-          availableY.add(floor.posY/72);
-        } else {
-          PositionedImage wall = new PositionedImage("wall.png", column * 72, row * 72);
-          wall.draw(graphics);
-        }
-      }
-    }
+    gameMap.drawMap(graphics, wallMatrix, floorTile, wallTile, availableX, availableY);
     hero.draw(graphics);
-    int temp = (int) (Math.random() * availableX.size());
-    for (int i = 0; i < 3; i++) {
-      PositionedImage skeleton = new PositionedImage(skeletonName, skeleX, skeleY);
-      enemy.drawSkeletonX(skeleton, availableX, temp);
-      enemy.drawSkeletonY(skeleton, availableY, temp);
-      skeleton.draw(graphics);
-    }
+    enemy.drawSkeleton(graphics, skeleton, availableX, availableY, temp1);
+    enemy.drawSkeleton(graphics, skeleton, availableX, availableY, temp2);
+    enemy.drawSkeleton(graphics, skeleton, availableX, availableY, temp3);
   }
 
   // To be a KeyListener the class needs to have these 3 methods in it

@@ -11,7 +11,7 @@ public class Board extends JComponent implements KeyListener {
   int heroBoxY;
   int skeleBoxX;
   int skeleBoxY;
-  int skeleNUm = 3;
+  int skeleNUm = 0;
   String heroPic = "hero-down.png";
   int[][] wallMatrix = new int[][]{
           {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
@@ -39,8 +39,9 @@ public class Board extends JComponent implements KeyListener {
     super.paint(graphics);
     List<Integer> availableX = new ArrayList<>();
     List<Integer> availableY = new ArrayList<>();
+
     PositionedImage hero = new PositionedImage(heroPic, heroBoxX, heroBoxY);
-    PositionedImage skeleton = new PositionedImage("skeleton.png", skeleBoxX * 72, skeleBoxY * 72);
+
 
     for (int row = 0; row < wallMatrix.length; row++) {
       for (int column = 0; column < wallMatrix[row].length; column++) {
@@ -54,11 +55,20 @@ public class Board extends JComponent implements KeyListener {
           wall.draw(graphics);
         }
       }
-      hero.draw(graphics);
-      int temp = (int)(Math.random() * availableX.size());
-      skeleBoxX = availableX.get(temp);
-      skeleBoxY = availableY.get(temp);
-      skeleton.draw(graphics);
+    }
+    hero.draw(graphics);
+
+    if (skeleNUm != 4) {
+      System.out.println(skeleNUm);
+
+      for (int i = 0; i < 4; i++) {
+        int temp = (int) (Math.random() * availableX.size());
+        skeleBoxX = availableX.get(temp);
+        skeleBoxY = availableY.get(temp);
+        PositionedImage skeleton = new PositionedImage("skeleton.png", skeleBoxX * 72, skeleBoxY * 72);
+        skeleton.draw(graphics);
+        skeleNUm++;
+      }
     }
   }
 

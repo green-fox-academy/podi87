@@ -38,7 +38,7 @@ public class Board extends JComponent implements KeyListener {
           PositionedImage floor = new PositionedImage("floor.png", column * 72, row * 72);
           floor.draw(graphics);
         } else {
-          PositionedImage wall = new PositionedImage("wall.png", row * 72, column * 72);
+          PositionedImage wall = new PositionedImage("wall.png", column * 72, row * 72);
           wall.draw(graphics);
         }
       }

@@ -9,36 +9,13 @@ import java.util.List;
 public class GameEngine extends JComponent implements KeyListener {
 
   Graphics graphics;
-  int heroBoxX;
-  int heroBoxY;
-  int skeleMove = 0;
-  List<Integer> availableX;
-  List<Integer> availableY;
-  String skeletonName = "skeleton.png";
-  String heroPic = "hero-down.png";
-  String floor = "floor.png";
-  String wall = "wall.png";
-  int[][] wallMatrix = new int[][]{
-          {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-          {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
-          {0, 1, 1, 1, 0, 1, 0, 1, 1, 0},
-          {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-          {1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
-          {0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
-          {0, 1, 0, 1, 0, 1, 1, 0, 0, 0},
-          {0, 0, 0, 0, 0, 1, 1, 0, 1, 0},
-          {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
-          {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},};
-//
-//  Enemy enemy = new Enemy(graphics);
-//  GameMap gameMap = new GameMap(graphics);
-//  int temp1 = (int)(Math.random() * gameMap.availableMatrixLength(wallMatrix));
-//  int temp2= (int)(Math.random() * gameMap.availableMatrixLength(wallMatrix));
-//  int temp3= (int)(Math.random() * gameMap.availableMatrixLength(wallMatrix));
+  GameMap map = new GameMap();
+  String heroDown = "hero-down.png";
+  Hero hero = new Hero(0,0,heroDown);
+
+
 
   public GameEngine() {
-    heroBoxX = 0;
-    heroBoxY = 0;
 
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
@@ -48,21 +25,12 @@ public class GameEngine extends JComponent implements KeyListener {
   public void paint(Graphics graphics) {
     super.paint(graphics);
 
-    availableX = new ArrayList<>();
-    availableY = new ArrayList<>();
-    Enemy enemy = new Enemy(graphics);
-    GameMap map = new GameMap();
-    PositionedImage hero = new PositionedImage(heroPic, heroBoxX, heroBoxY);
-    PositionedImage skeleton = new PositionedImage(skeletonName, 0, 0);
-    PositionedImage floorTile = new PositionedImage(floor, 0, 0);
-    PositionedImage wallTile = new PositionedImage(wall, 0, 0);
-
     for (MapTiles temp : map.tilesList) {
       PositionedImage tiles = new PositionedImage(temp.pictureName, temp.getPosX() * 72,temp.getPosY() * 72);
       tiles.draw(graphics);
     }
-    hero.draw(graphics);
-
+    PositionedImage heroImg = new PositionedImage(hero.pictureName, hero.getPosX()*72, hero.getPosY()*72);
+    heroImg.draw(graphics);
 
   }
 
@@ -77,30 +45,36 @@ public class GameEngine extends JComponent implements KeyListener {
 
   }
 
-  // But actually we can use just this one for our goals here
   @Override
   public void keyReleased(KeyEvent e) {
-    if ((e.getKeyCode() == KeyEvent.VK_UP) && (heroBoxY > 0)) {
-      heroPic = "hero-up.png";
-      if (wallMatrix[heroBoxY /72 - 1][heroBoxX /72] == 0) {
-        heroBoxY -= 72;
+
+    if ((e.getKeyCode() == KeyEvent.VK_UP) && (hero.posY > 0)) {
+      hero.pictureName = "hero-up.png";
+      if (validField(hero.posX, (hero.posY) - 1)) {
+         hero.MoveUp();
       }
-    } else if ((e.getKeyCode() == KeyEvent.VK_DOWN) && (heroBoxY < 648)) {
-      heroPic = "hero-down.png";
-      if (wallMatrix[heroBoxY /72 + 1][heroBoxX /72] == 0) {
-        heroBoxY += 72;
+    } else if ((e.getKeyCode() == KeyEvent.VK_DOWN) && (hero.posY < map.wallMatrix.length-1)) {
+      hero.pictureName = "hero-down.png";
+      if (validField(hero.posX,(hero.posY) + 1)) {
+        hero.MoveDown();
       }
-    } else if ((e.getKeyCode() == KeyEvent.VK_LEFT) && (heroBoxX > 0)) {
-      heroPic = "hero-left.png";
-      if (wallMatrix[heroBoxY /72][heroBoxX /72 - 1] == 0) {
-        heroBoxX -= 72;
+    } else if ((e.getKeyCode() == KeyEvent.VK_LEFT) && (hero.posX > 0)) {
+      hero.pictureName = "hero-left.png";
+      if (validField((hero.posX) - 1, hero.posY)) {
+        hero.MoveLeft();
       }
-    } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT) && (heroBoxX < 648)) {
-      heroPic = "hero-right.png";
-      if (wallMatrix[heroBoxY /72][heroBoxX /72 + 1] == 0) {
-        heroBoxX += 72;
+    } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT) && (hero.posX < map.wallMatrix.length-1)) {
+      hero.pictureName = "hero-right.png";
+      if (validField((hero.posX) + 1, hero.posY)) {
+        hero.MoveRight();
       }
     }
     repaint();
+  }
+  public boolean validField(int x, int y) {
+        if (map.wallMatrix[y][x] == 0) {
+          return true;
+        }
+    return false;
   }
 }

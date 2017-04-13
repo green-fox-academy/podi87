@@ -97,16 +97,29 @@ public class GameEngine extends JComponent implements KeyListener {
   public boolean validField(int x, int y) {
     return (map.wallMatrix[y][x] == 0);
   }
+
   public void enemyMove() {
+
     for (int i = 0; i < enemyList.size(); i++) {
-      if ((enemyList.get(i).posY > 0) && (validField(enemyList.get(i).posX, enemyList.get(i).posY - 1))) {
-        enemyList.get(i).MoveUp();
-      } else if ((enemyList.get(i).posY < map.wallMatrix.length - 1) && (validField(enemyList.get(i).posX, (enemyList.get(i).posY) + 1))) {
-        enemyList.get(i).MoveDown();
-      } else if ((enemyList.get(i).posX > 0) && (validField((enemyList.get(i).posX) - 1, enemyList.get(i).posY))) {
-        enemyList.get(i).MoveLeft();
-      } else if ((enemyList.get(i).posX < map.wallMatrix.length - 1) && (validField((enemyList.get(i).posX) + 1, enemyList.get(i).posY))) {
-        enemyList.get(i).MoveRight();
+      int direction = (int)(Math.random() * 4);
+      int direction2 = (int)(Math.random() * 4);
+
+      if (direction == 1 || direction2 == 1){
+        if ((enemyList.get(i).posY > 0) && (validField(enemyList.get(i).posX, enemyList.get(i).posY - 1))) {
+          enemyList.get(i).MoveUp();
+        }
+      } else if (direction == 2 || direction2 == 2) {
+        if ((enemyList.get(i).posY < map.wallMatrix.length - 1) && (validField(enemyList.get(i).posX, (enemyList.get(i).posY) + 1))) {
+          enemyList.get(i).MoveDown();
+        }
+      } else if (direction == 3 || direction2 == 3) {
+        if ((enemyList.get(i).posX > 0) && (validField((enemyList.get(i).posX) - 1, enemyList.get(i).posY))) {
+          enemyList.get(i).MoveLeft();
+        }
+      } else if (direction == 4 || direction2 == 4)  {
+          if ((enemyList.get(i).posX < map.wallMatrix.length - 1) && (validField((enemyList.get(i).posX) + 1, enemyList.get(i).posY))) {
+            enemyList.get(i).MoveRight();
+        }
       }
     }
   }

@@ -1,8 +1,9 @@
 
 public class Hero extends GameCharacter {
 
-  public Hero(double posX, double posY, String pictureName) {
-    super(posX, posY, "hero-down.png");
+  public Hero(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp) {
+    super(posX, posY, "hero-down.png",hp, currentHP, dp, sp);
+
   }
 
   public void MoveUp(double [][] wallMatrix){

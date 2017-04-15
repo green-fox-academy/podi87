@@ -1,12 +1,35 @@
 
 public class GameCharacter extends GameObject {
 
-  public GameCharacter(double posX, double posY, String pictureName) {
+  int hp;
+  int currentHP;
+  int dp;
+  int sp;
+
+  public GameCharacter(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp) {
    super(posX,posY, pictureName);
+   this.hp = hp;
+   this.currentHP = currentHP;
+   this.dp = dp;
+   this.sp = sp;
   }
 
   public GameCharacter() {
   }
+
+  public int dice() {
+    return (int)(Math.random() * 7);
+  }
+
+  public void strike (int enemyHP, int currentEnemyHP, int enemyDP, int attackerSP) {
+    int strikeValue = (2 * dice()) + attackerSP;
+    if (strikeValue >= enemyDP) {
+      currentEnemyHP = enemyHP - (strikeValue - enemyDP);
+    }
+  }
+
+
+
 
   public boolean notOutOfBounds(double x, double y, double [][] wallMatrix) {
     if ((y < 0) && (y > wallMatrix.length)) {

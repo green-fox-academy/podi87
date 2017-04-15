@@ -5,16 +5,16 @@ public class Hero extends GameCharacter {
     super(posX, posY, "hero-down.png");
   }
 
-  public void MoveUp(){
-    super.MoveUp();
+  public void MoveUp(double [][] wallMatrix){
+    super.MoveUp(wallMatrix);
   }
-  public void MoveDown(){
-    super.MoveDown();
+  public void MoveDown(double [][] wallMatrix){
+    super.MoveDown(wallMatrix);
   }
-  public void MoveLeft(){
-    super.MoveLeft();
+  public void MoveLeft(double [][] wallMatrix){
+    super.MoveLeft(wallMatrix);
   }
-  public void MoveRight(){
-    super.MoveRight();
+  public void MoveRight(double [][] wallMatrix){
+    super.MoveRight(wallMatrix);
   }
 }

@@ -71,28 +71,20 @@ public class GameEngine extends JComponent implements KeyListener {
       counter--;
     }
     if ((e.getKeyCode() == KeyEvent.VK_UP) && (hero.posY > 0)) {
-      if (validField(hero.posX, (hero.posY) - 1)) {
-        hero.MoveUp();
-      }
+        hero.MoveUp(map.wallMatrix);
+
     } else if ((e.getKeyCode() == KeyEvent.VK_DOWN) && (hero.posY < map.wallMatrix.length - 1)) {
-      if (validField(hero.posX, (hero.posY) + 1)) {
-        hero.MoveDown();
-      }
+        hero.MoveDown(map.wallMatrix);
+
     } else if ((e.getKeyCode() == KeyEvent.VK_LEFT) && (hero.posX > 0)) {
-      if (validField((hero.posX) - 1, hero.posY)) {
-        hero.MoveLeft();
-      }
+        hero.MoveLeft(map.wallMatrix);
+
     } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT) && (hero.posX < map.wallMatrix.length - 1)) {
-      if (validField((hero.posX) + 1, hero.posY)) {
-        hero.MoveRight();
-      }
+        hero.MoveRight(map.wallMatrix);
     }
     repaint();
   }
 
-  public boolean validField(double x, double y) {
-    return (map.wallMatrix[(int)y][(int)x] == 0);
-  }
 
   public void enemyMove() {
     for (int i = 0; i < enemyList.size(); i++) {

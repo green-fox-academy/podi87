@@ -1,7 +1,7 @@
 
 public class Hero extends GameCharacter {
 
-  public Hero(int posX, int posY, String pictureName) {
+  public Hero(double posX, double posY, String pictureName) {
     super(posX, posY, "hero-down.png");
   }
 

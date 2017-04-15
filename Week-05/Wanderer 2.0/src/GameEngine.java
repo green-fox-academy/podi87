@@ -8,7 +8,6 @@ import java.util.List;
 
 public class GameEngine extends JComponent implements KeyListener {
 
-  Graphics graphics;
   GameMap map = new GameMap();
   String heroDown = "hero-down.png";
   Hero hero = new Hero(0,0,heroDown);
@@ -21,6 +20,7 @@ public class GameEngine extends JComponent implements KeyListener {
 
 
   public GameEngine() {
+
     enemyList.add(new Enemy((map.freeFieldX.get(rand1)),(map.freeFieldY.get(rand1)), "skeleton.png"));
     enemyList.add(new Enemy((map.freeFieldX.get(rand2)),(map.freeFieldY.get(rand2)), "skeleton.png"));
     enemyList.add( new Enemy((map.freeFieldX.get(rand3)),(map.freeFieldY.get(rand3)), "skeleton.png"));
@@ -71,22 +71,18 @@ public class GameEngine extends JComponent implements KeyListener {
       counter--;
     }
     if ((e.getKeyCode() == KeyEvent.VK_UP) && (hero.posY > 0)) {
-      hero.pictureName = "hero-up.png";
       if (validField(hero.posX, (hero.posY) - 1)) {
-         hero.MoveUp();
+        hero.MoveUp();
       }
-    } else if ((e.getKeyCode() == KeyEvent.VK_DOWN) && (hero.posY < map.wallMatrix.length-1)) {
-      hero.pictureName = "hero-down.png";
-      if (validField(hero.posX,(hero.posY) + 1)) {
+    } else if ((e.getKeyCode() == KeyEvent.VK_DOWN) && (hero.posY < map.wallMatrix.length - 1)) {
+      if (validField(hero.posX, (hero.posY) + 1)) {
         hero.MoveDown();
       }
     } else if ((e.getKeyCode() == KeyEvent.VK_LEFT) && (hero.posX > 0)) {
-      hero.pictureName = "hero-left.png";
       if (validField((hero.posX) - 1, hero.posY)) {
         hero.MoveLeft();
       }
-    } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT) && (hero.posX < map.wallMatrix.length-1)) {
-      hero.pictureName = "hero-right.png";
+    } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT) && (hero.posX < map.wallMatrix.length - 1)) {
       if (validField((hero.posX) + 1, hero.posY)) {
         hero.MoveRight();
       }
@@ -94,33 +90,14 @@ public class GameEngine extends JComponent implements KeyListener {
     repaint();
   }
 
-  public boolean validField(int x, int y) {
-    return (map.wallMatrix[y][x] == 0);
+  public boolean validField(double x, double y) {
+    return (map.wallMatrix[(int)y][(int)x] == 0);
   }
 
   public void enemyMove() {
-
     for (int i = 0; i < enemyList.size(); i++) {
-      int direction = (int)(Math.random() * 4);
-      int direction2 = (int)(Math.random() * 4);
-
-      if (direction == 1 || direction2 == 1){
-        if ((enemyList.get(i).posY > 0) && (validField(enemyList.get(i).posX, enemyList.get(i).posY - 1))) {
-          enemyList.get(i).MoveUp();
-        }
-      } else if (direction == 2 || direction2 == 2) {
-        if ((enemyList.get(i).posY < map.wallMatrix.length - 1) && (validField(enemyList.get(i).posX, (enemyList.get(i).posY) + 1))) {
-          enemyList.get(i).MoveDown();
-        }
-      } else if (direction == 3 || direction2 == 3) {
-        if ((enemyList.get(i).posX > 0) && (validField((enemyList.get(i).posX) - 1, enemyList.get(i).posY))) {
-          enemyList.get(i).MoveLeft();
-        }
-      } else if (direction == 4 || direction2 == 4)  {
-          if ((enemyList.get(i).posX < map.wallMatrix.length - 1) && (validField((enemyList.get(i).posX) + 1, enemyList.get(i).posY))) {
-            enemyList.get(i).MoveRight();
-        }
-      }
+      int direction = (int)(Math.random() * 5);
+      enemyList.get(i).eMove(direction, map.wallMatrix, hero);
     }
   }
 }

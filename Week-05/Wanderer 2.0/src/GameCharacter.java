@@ -1,7 +1,7 @@
 
 public class GameCharacter extends GameObject {
 
-  public GameCharacter(int posX, int posY, String pictureName) {
+  public GameCharacter(double posX, double posY, String pictureName) {
    super(posX,posY, pictureName);
   }
 

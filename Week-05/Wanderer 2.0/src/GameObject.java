@@ -1,21 +1,21 @@
 
 public class GameObject {
 
-  int posX;
-  int posY;
+  double posX;
+  double posY;
   String pictureName;
 
   public GameObject() {
   }
 
-  public int getPosX() {
+  public double getPosX() {
     return posX;
   }
-  public int getPosY() {
+  public double getPosY() {
     return posY;
   }
 
-  public GameObject(int posX, int posY, String pictureName){
+  public GameObject(double posX, double posY, String pictureName){
     this.posX = posX;
     this.posY = posY;
     this.pictureName = pictureName;

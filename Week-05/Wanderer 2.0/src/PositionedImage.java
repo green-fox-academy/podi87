@@ -7,9 +7,9 @@ import java.io.IOException;
 public class PositionedImage {
 
   BufferedImage image;
-  int posX, posY;
+  double posX, posY;
 
-  public PositionedImage(String filename, int posX, int posY) {
+  public PositionedImage(String filename, double posX, double posY) {
     this.posX = posX;
     this.posY = posY;
     try {
@@ -21,7 +21,7 @@ public class PositionedImage {
 
   public void draw(Graphics graphics) {
     if (image != null) {
-      graphics.drawImage(image, posX, posY, null);
+      graphics.drawImage(image, (int)posX, (int)posY, null);
     }
   }
 }

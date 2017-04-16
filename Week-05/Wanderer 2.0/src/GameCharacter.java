@@ -5,13 +5,15 @@ public class GameCharacter extends GameObject {
   int currentHP;
   int dp;
   int sp;
+  int level;
 
-  public GameCharacter(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp) {
+  public GameCharacter(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp, int level) {
    super(posX,posY, pictureName);
    this.hp = hp;
    this.currentHP = currentHP;
    this.dp = dp;
    this.sp = sp;
+   this.level = level;
   }
 
   public GameCharacter() {
@@ -22,14 +24,12 @@ public class GameCharacter extends GameObject {
   }
 
   public void strike (int enemyHP, int currentEnemyHP, int enemyDP, int attackerSP) {
+    currentEnemyHP = enemyHP;
     int strikeValue = (2 * dice()) + attackerSP;
     if (strikeValue >= enemyDP) {
       currentEnemyHP = enemyHP - (strikeValue - enemyDP);
     }
   }
-
-
-
 
   public boolean notOutOfBounds(double x, double y, double [][] wallMatrix) {
     if ((y < 0) && (y > wallMatrix.length)) {
@@ -39,6 +39,7 @@ public class GameCharacter extends GameObject {
     }
     return true;
   }
+
   public boolean validField(double x, double y, double [][] wallMatrix) {
     if ((posY >= 0 && posY <= wallMatrix.length - 1) && (posX >= 0 && posX <= wallMatrix.length - 1) && notOutOfBounds(x,y,wallMatrix)) {
       return (wallMatrix[(int) y][(int) x] == 0);

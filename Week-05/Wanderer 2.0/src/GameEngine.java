@@ -8,10 +8,11 @@ import java.util.List;
 
 public class GameEngine extends JComponent implements KeyListener {
   int hp;
-  int currentHP;
+  int currentHP = hp;
   int dp;
   int sp;
-  int level;
+  int level = 1;
+  int chance;
   GameCharacter gameCharacter = new GameCharacter();
   GameMap map = new GameMap();
   String heroDown = "hero-down.png";
@@ -21,15 +22,16 @@ public class GameEngine extends JComponent implements KeyListener {
   int rand2 = (int)(Math.random() * map.freeFieldX.size());
   int rand3 = (int)(Math.random() * map.freeFieldX.size());
   int rand4 = (int)(Math.random() * map.freeFieldX.size());
-  List<Enemy> enemyList = new ArrayList<>();
+  List<GameCharacter> gameCharacterList = new ArrayList<>();
   HUD hud = new HUD();
 
-
   public GameEngine() {
-    enemyList.add(new Enemy((map.freeFieldX.get(rand1)),(map.freeFieldY.get(rand1)), "skeleton.png", hp, currentHP, dp, sp, level));
-    enemyList.add(new Enemy((map.freeFieldX.get(rand2)),(map.freeFieldY.get(rand2)), "skeleton.png", hp, currentHP, dp, sp, level));
-    enemyList.add(new Enemy((map.freeFieldX.get(rand3)),(map.freeFieldY.get(rand3)), "skeleton.png", hp, currentHP, dp, sp, level));
-    enemyList.add(new Enemy((map.freeFieldX.get(rand4)),(map.freeFieldY.get(rand4)), "boss.png", hp, currentHP, dp, sp, level));
+
+    gameCharacterList.add(hero);
+    gameCharacterList.add(new Enemy((map.freeFieldX.get(rand1)),(map.freeFieldY.get(rand1)), "skeleton.png", hp, currentHP, dp, sp, level));
+    gameCharacterList.add(new Enemy((map.freeFieldX.get(rand2)),(map.freeFieldY.get(rand2)), "skeleton.png", hp, currentHP, dp, sp, level));
+    gameCharacterList.add(new Enemy((map.freeFieldX.get(rand3)),(map.freeFieldY.get(rand3)), "skeleton.png", hp, currentHP, dp, sp, level));
+    gameCharacterList.add(new Enemy((map.freeFieldX.get(rand4)),(map.freeFieldY.get(rand4)), "boss.png", hp, currentHP, dp, sp, level));
 
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
@@ -39,23 +41,35 @@ public class GameEngine extends JComponent implements KeyListener {
   public void paint(Graphics graphics) {
     super.paint(graphics);
 
+
     for (MapTiles temp : map.tilesList) {
       PositionedImage tiles = new PositionedImage(temp.pictureName, temp.getPosX() * 72,temp.getPosY() * 72);
       tiles.draw(graphics);
     }
-    PositionedImage skeleton1 = new PositionedImage(enemyList.get(0).pictureName, enemyList.get(0).posX * 72, enemyList.get(0).posY * 72);
-    skeleton1.draw(graphics);
-    PositionedImage skeleton2 = new PositionedImage(enemyList.get(1).pictureName, enemyList.get(1).posX * 72, enemyList.get(1).posY * 72);
-    skeleton2.draw(graphics);
-    PositionedImage skeleton3 = new PositionedImage(enemyList.get(2).pictureName, enemyList.get(2).posX * 72, enemyList.get(2).posY * 72);
-    skeleton3.draw(graphics);
-    PositionedImage boss = new PositionedImage(enemyList.get(3).pictureName, enemyList.get(3).posX * 72, enemyList.get(3).posY * 72);
-    boss.draw(graphics);
-    PositionedImage heroImg = new PositionedImage(hero.pictureName, hero.getPosX() * 72, hero.getPosY() * 72);
-    heroImg.draw(graphics);
-    graphics.drawRect(0, 720, 720, 72);
-    graphics.drawString(hud.HUDScreen(enemyList, hero), 25, 740);
+    if (gameCharacterList.size() == 1) {
+      level++;
+      hero.level++;
+      chance =(int)(Math.random() * 11);
+      System.out.println(chance);
+      hero.restore(chance);
+      gameCharacterList.add(new Enemy((map.freeFieldX.get(rand1)),(map.freeFieldY.get(rand1)), "skeleton.png", hp, currentHP, dp, sp, level));
+      gameCharacterList.add(new Enemy((map.freeFieldX.get(rand2)),(map.freeFieldY.get(rand2)), "skeleton.png", hp, currentHP, dp, sp, level));
+      gameCharacterList.add(new Enemy((map.freeFieldX.get(rand3)),(map.freeFieldY.get(rand3)), "skeleton.png", hp, currentHP, dp, sp, level));
+      gameCharacterList.add(new Enemy((map.freeFieldX.get(rand4)),(map.freeFieldY.get(rand4)), "boss.png", hp, currentHP, dp, sp, level));
+    }
 
+
+      for (int i = 0; i < gameCharacterList.size(); i++) {
+        gameCharacterList.get(i).die(gameCharacterList);
+        PositionedImage characters = new PositionedImage(gameCharacterList.get(i).pictureName, gameCharacterList.get(i).posX * 72, gameCharacterList.get(i).posY * 72);
+        characters.draw(graphics);
+
+
+    }
+    graphics.drawRect(0, 720, 720, 132);
+    for (int i = 0; i < gameCharacterList.size(); i++) {
+      graphics.drawString(hud.HUDScreen(gameCharacterList.get(i)), 25, 740 + (i * 15));
+    }
   }
 
   // To be a KeyListener the class needs to have these 3 methods in it
@@ -71,6 +85,7 @@ public class GameEngine extends JComponent implements KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
+
     if (counter == 0) {
       enemyMove();
       counter++;
@@ -88,41 +103,33 @@ public class GameEngine extends JComponent implements KeyListener {
 
     } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
         hero.MoveRight(map.wallMatrix);
+
     } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-      for (int i = 0; i < enemyList.size(); i++) {
-        if ((enemyList.get(i).posX == hero.posX) && (enemyList.get(i).posY == hero.posY)) {
-          hero.strike(enemyList.get(i).hp, enemyList.get(i).currentHP,enemyList.get(i).dp, hero.sp);
+      for (GameCharacter someBody : gameCharacterList) {
+        if ((someBody.posX == hero.posX) && (someBody.posY == hero.posY) && (someBody != hero)) {
+          hero.strike(someBody);
+          someBody.strike(hero);
         }
       }
     }
-
-
     repaint();
   }
 
 
   public void enemyMove() {
-    for (int i = 0; i < enemyList.size(); i++) {
-      int direction = (int)(Math.random() * 5);
-      enemyList.get(i).eMove(direction, map.wallMatrix, hero);
+    for (int i = 0; i < gameCharacterList.size(); i++) {
+      int direction = (int) (Math.random() * 5);
+      if ((hero.posX != gameCharacterList.get(i).posX) && (hero.posY != gameCharacterList.get(i).posY)) {
+        if (direction == 1) {
+          gameCharacterList.get(i).MoveUp(map.wallMatrix);
+        } else if (direction == 2) {
+          gameCharacterList.get(i).MoveDown(map.wallMatrix);
+        } else if (direction == 3) {
+          gameCharacterList.get(i).MoveLeft(map.wallMatrix);
+        } else if (direction == 4) {
+          gameCharacterList.get(i).MoveRight(map.wallMatrix);
+        }
+      }
     }
   }
-//  public void addStat(){
-//    if (hero.pictureName == "hero-down.png") {
-//      hero.hp = 20 + (3 * gameCharacter.dice());
-//      hero.dp = 2 * gameCharacter.dice();
-//      hero.sp = 5 + gameCharacter.dice();
-//    }
-//    for (int i = 0; i < enemyList.size(); i++) {
-//      if (enemyList.get(i).pictureName == "boss.png") {
-//      enemyList.get(i).hp = (2 * level * gameCharacter.dice()) + gameCharacter.dice();
-//      enemyList.get(i).dp = ((level / 2) * gameCharacter.dice()) + (gameCharacter.dice() / 2);
-//      enemyList.get(i).sp = (level * gameCharacter.dice()) + level;
-//    } else {
-//        enemyList.get(i).hp = (2 * level * gameCharacter.dice());
-//        enemyList.get(i).dp = ((level / 2) * gameCharacter.dice());
-//        enemyList.get(i).sp = (level * gameCharacter.dice());
-//      }
-//    }
-//  }
 }

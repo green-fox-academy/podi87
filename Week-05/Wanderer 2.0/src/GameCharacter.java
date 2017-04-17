@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class GameCharacter extends GameObject {
 
@@ -23,11 +24,18 @@ public class GameCharacter extends GameObject {
     return (int)(Math.random() * 7);
   }
 
-  public void strike (int enemyHP, int currentEnemyHP, int enemyDP, int attackerSP) {
-    currentEnemyHP = enemyHP;
-    int strikeValue = (2 * dice()) + attackerSP;
-    if (strikeValue >= enemyDP) {
-      currentEnemyHP = enemyHP - (strikeValue - enemyDP);
+  public void strike (GameCharacter target) {
+    int strikeValue = (2 * dice()) + sp;
+    if (strikeValue >= target.dp) {
+      target.currentHP = target.currentHP - (strikeValue - target.dp);
+    }
+  }
+
+  public void die(List<GameCharacter> charList) {
+    for (int i = 0; i < charList.size(); i++) {
+      if ((charList.get(i).currentHP <= 0)) {
+        charList.remove(i);
+      }
     }
   }
 

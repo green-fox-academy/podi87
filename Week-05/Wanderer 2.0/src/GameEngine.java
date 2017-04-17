@@ -54,13 +54,15 @@ public class GameEngine extends JComponent implements KeyListener {
       graphics.drawString("Luke Skywalker is died!  -- GAME OVER --", 250, 50);
     }
 
-    if ((gameCharacterList.size() == 1) && (hero.hp > 0) && (hero.hasKey == true)) {
+    if ((gameCharacterList.size() == 1) && (hero.hp > 0) && (hero.hasKey == true) && (hero.posX == map.wallMatrix.length-1) && (hero.posY == map.wallMatrix.length-1)) {
       level++;
       hero.level++;
       hero.hasKey = false;
       chance =(int)(Math.random() * 11);
       System.out.println(chance);
       restore(hero);
+      hero.posX = 0;
+      hero.posY = 0;
       gameCharacterList.add(new Enemy((map.freeFieldX.get(rand1)),(map.freeFieldY.get(rand1)), "skeleton.png", hp, currentHP, dp, sp, level, false));
       gameCharacterList.add(new Enemy((map.freeFieldX.get(rand2)),(map.freeFieldY.get(rand2)), "skeleton.png", hp, currentHP, dp, sp, level, true));
       gameCharacterList.add(new Enemy((map.freeFieldX.get(rand3)),(map.freeFieldY.get(rand3)), "skeleton.png", hp, currentHP, dp, sp, level, false));
@@ -79,7 +81,13 @@ public class GameEngine extends JComponent implements KeyListener {
 
     graphics.drawRect(0, 720, 720, 132);
     for (int i = 0; i < gameCharacterList.size(); i++) {
-      graphics.drawString(hud.HUDScreen(gameCharacterList.get(i)), 25, 740 + (i * 15));
+      graphics.drawString(hud.HUDScreenHero(gameCharacterList.get(i)), 25, 740);
+      if ((gameCharacterList.get(i).posX == hero.posX) && (gameCharacterList.get(i).posY == hero.posY)) {
+        graphics.drawString(hud.HUDScreenEnemy(gameCharacterList.get(i)), 25, 740 + 15);
+      }
+    }
+    if ((gameCharacterList.size() == 1) && (gameCharacterList.get(0) == hero)) {
+      graphics.drawString("All enemies are killed! NEXT LEVEL!", 25, 740 + 30);
     }
   }
 

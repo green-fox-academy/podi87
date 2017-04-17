@@ -20,5 +20,4 @@ public class GameObject {
     this.posY = posY;
     this.pictureName = pictureName;
   }
-
 }

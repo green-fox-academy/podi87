@@ -2,8 +2,8 @@
 
 public class Enemy extends GameCharacter {
 
-  public Enemy(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp, int level) {
-    super(posX, posY, pictureName, hp, currentHP, dp, sp, level);
+  public Enemy(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp, int level, boolean hasKey) {
+    super(posX, posY, pictureName, hp, currentHP, dp, sp, level, hasKey);
     if (pictureName == "boss.png") {
       this.hp = (2 * level * dice()) + dice();
       this.currentHP = this.hp;

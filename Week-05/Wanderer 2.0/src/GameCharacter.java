@@ -7,21 +7,23 @@ public class GameCharacter extends GameObject {
   int dp;
   int sp;
   int level;
+  boolean hasKey;
 
-  public GameCharacter(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp, int level) {
+  public GameCharacter(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp, int level, boolean hasKey) {
    super(posX,posY, pictureName);
    this.hp = hp;
    this.currentHP = currentHP;
    this.dp = dp;
    this.sp = sp;
    this.level = level;
+   this.hasKey = hasKey;
   }
 
   public GameCharacter() {
   }
 
   public int dice() {
-    return (int)(Math.random() * 7);
+    return 1 + (int)(Math.random() * 7);
   }
 
   public void strike (GameCharacter target) {

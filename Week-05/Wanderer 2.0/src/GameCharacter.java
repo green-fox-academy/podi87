@@ -8,6 +8,7 @@ public class GameCharacter extends GameObject {
   int sp;
   int level;
   boolean hasKey;
+  boolean canMoveToNextMap;
 
   public GameCharacter(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp, int level, boolean hasKey) {
    super(posX,posY, pictureName);
@@ -17,6 +18,7 @@ public class GameCharacter extends GameObject {
    this.sp = sp;
    this.level = level;
    this.hasKey = hasKey;
+
   }
 
   public GameCharacter() {
@@ -52,7 +54,7 @@ public class GameCharacter extends GameObject {
 
   public boolean validField(double x, double y, double [][] wallMatrix) {
     if ((posY >= 0 && posY <= wallMatrix.length - 1) && (posX >= 0 && posX <= wallMatrix.length - 1) && notOutOfBounds(x,y,wallMatrix)) {
-      return (wallMatrix[(int) y][(int) x] == 0);
+      return ((wallMatrix[(int) y][(int) x] == 0) || (wallMatrix[(int) y][(int) x] == 3));
     }
     return false;
   }

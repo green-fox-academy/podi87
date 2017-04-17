@@ -2,12 +2,13 @@
 public class Hero extends GameCharacter {
 
 
-  public Hero(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp, int level, boolean hasKey) {
+  public Hero(double posX, double posY, String pictureName, int hp, int currentHP, int dp, int sp, int level, boolean hasKey, boolean canMoveToNextMap) {
     super(posX, posY, "hero-down.png",hp, currentHP, dp, sp, level, hasKey);
     this.hp = 20 + (3 * dice());
     this.currentHP = this.hp;
     this.dp = 2 * dice();
     this.sp = 5 + dice();
+    this.canMoveToNextMap = canMoveToNextMap;
   }
 
   public void MoveUp(double [][] wallMatrix){

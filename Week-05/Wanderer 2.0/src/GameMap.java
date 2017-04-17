@@ -18,7 +18,7 @@ public class GameMap {
           {0, 2.2, 2.3, 0, 0, 0, 2.2, 2.3, 0, 0},
           {0, 2.4, 2.5, 2.6, 0, 0, 2.4, 2.5, 2.6, 0},
           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},};
+          {0, 0, 0, 0, 0, 0, 0, 0, 0, 3},};
 
   public GameMap() {
 
@@ -29,7 +29,8 @@ public class GameMap {
                 wallMatrix[i][j] == 1.1, wallMatrix[i][j] == 1.2, wallMatrix[i][j] == 1.3,
                 wallMatrix[i][j] == 1.4, wallMatrix[i][j] == 1.5, wallMatrix[i][j] == 1.6,
                 wallMatrix[i][j] == 2.1, wallMatrix[i][j] == 2.2, wallMatrix[i][j] == 2.3,
-                wallMatrix[i][j] == 2.4, wallMatrix[i][j] == 2.5, wallMatrix[i][j] == 2.6);
+                wallMatrix[i][j] == 2.4, wallMatrix[i][j] == 2.5, wallMatrix[i][j] == 2.6,
+                wallMatrix[i][j] == 3);
         tilesList.add(mapTiles);
         if (wallMatrix[i][j] == 0) {
           freeFieldX.add(mapTiles.posX);

@@ -1,3 +1,5 @@
+import org.omg.CORBA.MARSHAL;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,10 +16,11 @@ public class GameEngine extends JComponent implements KeyListener {
   int level = 1;
   int chance;
   boolean hasKey;
+  boolean canMoveToNextMap;
   GameCharacter heroRestore = new GameCharacter();
   GameMap map = new GameMap();
   String heroDown = "hero-down.png";
-  Hero hero = new Hero(0,0,heroDown, hp, currentHP, dp, sp, level, false);
+  Hero hero = new Hero(0,0,heroDown, hp, currentHP, dp, sp, level, false, false);
   int counter = 0;
   int rand1 = (int)(Math.random() * map.freeFieldX.size());
   int rand2 = (int)(Math.random() * map.freeFieldX.size());
@@ -53,12 +56,13 @@ public class GameEngine extends JComponent implements KeyListener {
       graphics.setColor(Color.BLACK);
       graphics.drawString("Luke Skywalker is died!  -- GAME OVER --", 250, 50);
     }
-
-    if ((gameCharacterList.size() == 1) && (hero.hp > 0) && (hero.hasKey == true) && (hero.posX == map.wallMatrix.length-1) && (hero.posY == map.wallMatrix.length-1)) {
+    System.out.println(hero.canMoveToNextMap);
+    if (hero.canMoveToNextMap) {
       level++;
       hero.level++;
       hero.hasKey = false;
-      chance =(int)(Math.random() * 11);
+      hero.canMoveToNextMap = false;
+      chance = (int)(Math.random() * 11);
       System.out.println(chance);
       restore(hero);
       hero.posX = 0;
@@ -118,6 +122,7 @@ public class GameEngine extends JComponent implements KeyListener {
       } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
         hero.MoveRight(map.wallMatrix);
       } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+        nextMap(hero);
         for (GameCharacter someBody : gameCharacterList) {
           if ((someBody.posX == hero.posX) && (someBody.posY == hero.posY) && (someBody != hero)) {
             hero.strike(someBody);
@@ -158,6 +163,12 @@ public class GameEngine extends JComponent implements KeyListener {
   public void getKey(GameCharacter enemy, Hero hero) {
     if ((enemy.hasKey == true) && (enemy.currentHP <= 0)) {
       hero.hasKey = true;
+    }
+  }
+  public void nextMap(Hero hero) {
+    if ((hero.posX == (map.wallMatrix.length) - 1) && (hero.posY == (map.wallMatrix.length) - 1)
+            && (gameCharacterList.size() == 1) && (hero.hp > 0) && (hero.hasKey)) {
+      hero.canMoveToNextMap = true;
     }
   }
 }

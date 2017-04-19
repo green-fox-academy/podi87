@@ -8,7 +8,7 @@ public class SplitString {
 
   public static void main(String[] args) {
 
-    System.out.println(split(input, 15));
+    System.out.println(split(input, 4));
 
   }
   public static ArrayList<String> split(String input, int number) {

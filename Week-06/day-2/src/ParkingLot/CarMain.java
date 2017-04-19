@@ -61,7 +61,6 @@ public class CarMain {
       carColorList.add(CarColor.values()[i]);
     }
 
-    List<Car> frequentCars = new ArrayList<>();
     List<Integer> frequentCarsNumber = new ArrayList<>();
     for (int i = 0; i < carList.size(); i++) {
       int carCounter = 0;
@@ -75,7 +74,6 @@ public class CarMain {
           carCounter++;
         }
       }
-      frequentCars.add(carList.get(i));
       frequentCarsNumber.add(carCounter);
     }
     int maxIndex = 0;
@@ -84,6 +82,6 @@ public class CarMain {
         maxIndex = i;
       }
     }
-    return frequentCars.get(maxIndex);
+    return carList.get(maxIndex);
   }
 }

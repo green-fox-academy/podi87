@@ -1,10 +1,7 @@
 package SumTheArray;
 
-import java.util.Arrays;
-
 public class SumTheArray {
   public static void main(String[] args) {
-    String [] stringArray = new String[] {"1", "2", "3", "4"};
     Integer[] intArray = {1, 2, 3, 4,};
 
     System.out.println(sumArrayElement(intArray, 9));

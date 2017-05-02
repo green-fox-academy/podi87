@@ -9,5 +9,7 @@ public class Greetings {
 
   private long id;
   private String content;
+  private String color;
+  private String size;
 
 }

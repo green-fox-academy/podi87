@@ -13,7 +13,8 @@ public class HelloRESTController {
 
   @RequestMapping(value = "/greeting")
   public Greetings greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
-    Greetings greetings = new Greetings(id.incrementAndGet(), "Hello, " + name);
+    Greetings greetings = new Greetings(id.incrementAndGet(), "Hello, " + name, "green", "22");
     return greetings;
   }
+
 }

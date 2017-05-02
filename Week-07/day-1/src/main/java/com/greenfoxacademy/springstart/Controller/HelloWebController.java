@@ -40,7 +40,7 @@ public class HelloWebController {
   }
   private String getSize() {
     Random randomGenerator = new Random();
-    Integer size = randomGenerator.nextInt(48);
+    Integer size = randomGenerator.nextInt(100);
     return size.toString();
   }
 }

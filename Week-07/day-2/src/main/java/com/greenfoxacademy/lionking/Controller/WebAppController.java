@@ -11,7 +11,7 @@ import java.util.List;
 @Controller
 public class WebAppController {
 
-  @RequestMapping("/Exercise7")
+  @RequestMapping("/Exercise8")
   public String addBankAccount(Model model) {
     List<BankAccount> animalList = new ArrayList<>();
     animalList.add(new BankAccount("Simba", 2000, "lion"));
@@ -20,7 +20,7 @@ public class WebAppController {
     animalList.add(new BankAccount("Pumba", 50, "warthog"));
     animalList.add(new BankAccount("Zordon", 4500, "bad lion"));
     model.addAttribute("animals", animalList);
-    return "Exercise7";
+    return "Exercise8";
   }
   @RequestMapping("/Exercise4")
   public String hello(Model model) {

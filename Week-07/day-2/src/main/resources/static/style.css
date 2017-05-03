@@ -1,3 +1,9 @@
 .king {
     color: darkorange;
 }
+.badGuy {
+    color: darkblue;
+}
+.goodGuy {
+    font-size: 20px;
+}

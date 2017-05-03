@@ -5,14 +5,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class WebAppController {
 
-  @RequestMapping("/Exercise3")
+  @RequestMapping("/Exercise5")
   public String addBankAccount(Model model) {
-    BankAccount simba = new BankAccount("Simba", 2000, "lion");
-    model.addAttribute("simba", simba);
-    return "Exercise3";
+    List<BankAccount> animalList = new ArrayList<>();
+    animalList.add(new BankAccount("Simba", 2000, "lion"));
+    animalList.add(new BankAccount("Mufasa", 10000, "lion"));
+    animalList.add(new BankAccount("Timon", 300, "meerkat"));
+    animalList.add(new BankAccount("Pumba", 50, "warthog"));
+    animalList.add(new BankAccount("Zordon", 4500, "lion"));
+    model.addAttribute("animals", animalList);
+    return "Exercise5";
   }
   @RequestMapping("/Exercise4")
   public String hello(Model model) {

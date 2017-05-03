@@ -11,16 +11,16 @@ import java.util.List;
 @Controller
 public class WebAppController {
 
-  @RequestMapping("/Exercise5")
+  @RequestMapping("/Exercise7")
   public String addBankAccount(Model model) {
     List<BankAccount> animalList = new ArrayList<>();
     animalList.add(new BankAccount("Simba", 2000, "lion"));
-    animalList.add(new BankAccount("Mufasa", 10000, "lion"));
+    animalList.add(new BankAccount("Mufasa", 10000, "king lion"));
     animalList.add(new BankAccount("Timon", 300, "meerkat"));
     animalList.add(new BankAccount("Pumba", 50, "warthog"));
-    animalList.add(new BankAccount("Zordon", 4500, "lion"));
+    animalList.add(new BankAccount("Zordon", 4500, "bad lion"));
     model.addAttribute("animals", animalList);
-    return "Exercise5";
+    return "Exercise7";
   }
   @RequestMapping("/Exercise4")
   public String hello(Model model) {

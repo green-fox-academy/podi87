@@ -1,10 +1,9 @@
 package com.greenfoxacademy.lionking.Model;
 
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.text.DecimalFormat;
+
 
 @Getter
 @AllArgsConstructor

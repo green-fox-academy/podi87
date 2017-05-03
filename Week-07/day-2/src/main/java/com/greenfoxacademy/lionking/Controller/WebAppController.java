@@ -14,4 +14,10 @@ public class WebAppController {
     model.addAttribute("simba", simba);
     return "Exercise3";
   }
+  @RequestMapping("/Exercise4")
+  public String hello(Model model) {
+    model.addAttribute("html", "<em>HTML</em>");
+    model.addAttribute("enjoy", "<b>Enjoy yourself!</b>");
+    return "Exercise4";
+  }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PFC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<a href="index1.html">Information</a>
+<p></p>
+<a href="nutrition.html">Nutrition Store</a>
+
+<form method="post" action="/nutrition/change">
+    <span>Food</span>
+    <select name="food">
+        <option></option>
+        <option th:each="food : ${foods}" th:value="${food}" th:text="${food}"></option>
+    </select>
+    <span>Drink</span>
+    <select name="drink">
+        <option></option>
+        <option th:each="drink : ${drinks}" th:value="${drink}" th:text="${drink}"></option>
+    </select>
+    <input type="submit" value="Change"/>
+</form>
+</body>
+</html>

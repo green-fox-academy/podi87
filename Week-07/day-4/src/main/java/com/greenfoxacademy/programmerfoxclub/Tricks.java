@@ -1,19 +1,21 @@
 package com.greenfoxacademy.programmerfoxclub;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Tricks {
 
-  public List<String> getTricksList() {
-    return tricksList;
+  List<String> trickList = new ArrayList<>();
+
+  public List<String> getTrickList() {
+    return trickList;
   }
 
-  List<String> tricksList = new ArrayList<>();
-
-  public List<String> addTricks(String newTrick) {
-    tricksList.add(newTrick);
-    return tricksList;
+  public List addTricks(String input){
+    trickList.add(input);
+    return  trickList;
   }
-
 }

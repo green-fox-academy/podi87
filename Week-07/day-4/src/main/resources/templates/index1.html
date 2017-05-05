@@ -5,19 +5,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<li>Information</li>
+<a href="index1.html">Information</a>
 <p></p>
-<img src="/greenfox.png" alt="GreenFoxLogo"/>
+<a href="nutrition.html">Nutrition Store</a>
+<p></p>
+<img src="/greenfox2.png" alt="GreenFoxLogo"/>
 <p></p>
 <p>
     This is <span th:text="${foxName}">Mr.Fox</span> is currently living on
     <span th:text="${food}">Mr.Fox</span> and
-    <span th:text="${drink}">Mr.Fox</span>
+    <span th:text="${drink}">Mr.Fox</span>. He knows
+    <span th:text="${knownTricks}">Mr.Fox</span> tricks.
 </p>
 <h1>Known tricks</h1>
 <ol>
-    <li>write HTML</li>
-    <li>code in Java</li>
+    <p><span th:text="${trick0}">trick1</span></p>
 </ol>
 </body>
 </html>

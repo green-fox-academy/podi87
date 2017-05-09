@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+    <title>ToDo CRUD App</title>
+</head>
+<body>
+    <h1>Edit Todo</h1>
+    <form th:each="temp: ${todo}" th:action="@{/todo/update?upID=} + ${temp.id}" method="post">
+        <input type="checkbox" name="doneState" value="on"/> Maths
+        <input type="checkbox" name="urgentState" value="on"/> Physics
+    </form>
+</body>
+</html>

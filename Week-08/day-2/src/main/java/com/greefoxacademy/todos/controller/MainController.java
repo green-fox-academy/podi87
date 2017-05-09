@@ -30,5 +30,28 @@ public class MainController {
     return "redirect:/todo/";
   }
 
+  @RequestMapping("/delete")
+  public String delete(Model model,
+                         @RequestParam(name = "delID", required = false) long delID){
+    toDoRepository.delete(delID);
+    return "redirect:/todo/";
+  }
+
+  @RequestMapping("/edit")
+  public String direct(Model model) {
+    return "update";
+  }
+
+  @RequestMapping("/update")
+  public String update(Model model,
+                       @RequestParam(name = "upID", required = false) long upID, @RequestParam(name = "newTitle", required = false) String newTitle,
+                       @RequestParam(name = "doneState", required = false) boolean doneState, @RequestParam(name = "urgentState", required = false) boolean urgentState){
+    toDoRepository.findOne(upID).setDone(doneState);
+    toDoRepository.findOne(upID).setUrgent(urgentState);
+    toDoRepository.findOne(upID).setTitle(newTitle);
+    toDoRepository.save(toDoRepository.findOne(upID));
+    return "redirect:/todo/";
+  }
+
 
 }

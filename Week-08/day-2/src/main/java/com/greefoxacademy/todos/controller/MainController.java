@@ -17,10 +17,28 @@ public class MainController {
   @Autowired
   ToDoRepository toDoRepository;
 
-  @RequestMapping({"/","/list"})
+  @RequestMapping("/")
   public String listTodos(Model model){
     model.addAttribute("todos", toDoRepository.findAll());
     return "todolist";
+  }
+
+  @RequestMapping("/list")
+  public String listALLTodos(Model model) {
+    model.addAttribute("todos", toDoRepository.findAll());
+    return "todolist2";
+  }
+
+  @RequestMapping("/urgent")
+  public String listUrgent(Model model) {
+    model.addAttribute("todos", toDoRepository.findAll());
+    return "urgent";
+  }
+
+  @RequestMapping("/done")
+  public String listDone(Model model) {
+    model.addAttribute("todos", toDoRepository.findAll());
+    return "done";
   }
 
   @RequestMapping("/addToDo")

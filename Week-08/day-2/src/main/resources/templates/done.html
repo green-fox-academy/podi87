@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+    <title>ToDo CRUD App</title>
+</head>
+<body>
+<h1>Urgent todos:</h1>
+<ul>
+    <li><a href="http://localhost:8080/todo/list">  List all todo  </a></li>
+    <li><a href="http://localhost:8080/todo/">  List undone  </a></li>
+    <li><a href="http://localhost:8080/todo/"> Back </a></li>
+</ul>
+<table th:class="table">
+    <tr th:class="header">
+        <th>ID</th>
+        <th>Title</th>
+        <th><a href="http://localhost:8080/todo/urgent"> Urgent </a></th>
+        <th><a href="http://localhost:8080/todo/done"> Done </a></th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:class="list" th:each="temp : ${todos}" th:if="${temp.Done == true}">
+        <td th:text="${temp.id}"></td>
+        <td th:class="title" th:text="${temp.title}">title</td>
+        <td th:text="${temp.Urgent}">urgent</td>
+        <td th:text="${temp.Done}">done</td>
+        <td>
+            <form th:action="@{/todo/edit?upID=} + ${temp.id}" th:object="${todos}" method="post">
+                <input type="submit" th:name="delID" value="Edit"/>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/todo/delete?delID=} + ${temp.id}" th:object="${todos}" method="post">
+                <input type="submit" th:name="delID" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

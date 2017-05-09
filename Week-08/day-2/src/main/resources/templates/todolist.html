@@ -11,12 +11,16 @@
             <input type="text" th:name="newTodo"  />
             <input type="submit" value="Add new"/>
         </form>
+    <ul>
+        <li><a href="http://localhost:8080/todo/list">  List all todo  </a></li>
+        <li><a href="http://localhost:8080/todo/">  List undone  </a></li>
+    </ul>
     <table th:class="table">
         <tr th:class="header">
             <th>ID</th>
             <th>Title</th>
-            <th>Urgent</th>
-            <th>Done</th>
+            <th><a href="http://localhost:8080/todo/urgent"> Urgent </a></th>
+            <th><a href="http://localhost:8080/todo/done"> Done </a></th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -26,7 +30,7 @@
             <td th:text="${temp.Urgent}">urgent</td>
             <td th:text="${temp.Done}">done</td>
             <td>
-                <form th:action="@{/todo/edit?upID=} + ${temp.id}" th:object="${todos}" th:attr="id = ${temp.id}" method="post">
+                <form th:action="@{/todo/edit?upID=} + ${temp.id}" th:object="${todos}" method="post">
                     <input type="submit" th:name="delID" value="Edit"/>
                 </form>
             </td>

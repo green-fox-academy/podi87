@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>ToDo CRUD App</title>
 </head>
 <body>
  <h1>Todos for today:</h1>
-    <ol th:text="">
-        <li></li>
-    </ol>
+    <ul>
+        <li class="list" th:each = "alltodo : ${todos}" th:text="${alltodo}">list elements</li>
+    </ul>
+ <!--<form th:action="@{/addToDo}" th:object="${todos}" method="post">-->
+     <!--<input type="text" th:name="newTodo"  />-->
+     <!--<input type="submit" />-->
+ <!--</form>-->
 </body>
 </html>

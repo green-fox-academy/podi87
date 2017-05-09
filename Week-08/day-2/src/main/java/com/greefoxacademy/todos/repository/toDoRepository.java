@@ -3,6 +3,8 @@ package com.greefoxacademy.todos.repository;
 
 import com.greefoxacademy.todos.model.ToDo;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
 
-public interface toDoRepository extends CrudRepository<ToDo, Long>{
+@Component
+public interface ToDoRepository extends CrudRepository<ToDo, Long>{
 }

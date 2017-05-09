@@ -39,15 +39,17 @@ public class MainController {
 
   @RequestMapping("/edit")
   public String direct(Model model) {
+    model.addAttribute("todos", toDoRepository.findAll());
+
     return "update";
   }
 
   @RequestMapping("/update")
   public String update(Model model,
                        @RequestParam(name = "upID", required = false) long upID, @RequestParam(name = "newTitle", required = false) String newTitle,
-                       @RequestParam(name = "doneState", required = false) boolean doneState, @RequestParam(name = "urgentState", required = false) boolean urgentState){
-    toDoRepository.findOne(upID).setDone(doneState);
-    toDoRepository.findOne(upID).setUrgent(urgentState);
+                       @RequestParam(name = "doneState", required = false) String doneState, @RequestParam(name = "urgentState", required = false) String urgentState){
+    toDoRepository.findOne(upID).setDone(Boolean.valueOf(doneState));
+    toDoRepository.findOne(upID).setUrgent(Boolean.valueOf(urgentState));
     toDoRepository.findOne(upID).setTitle(newTitle);
     toDoRepository.save(toDoRepository.findOne(upID));
     return "redirect:/todo/";

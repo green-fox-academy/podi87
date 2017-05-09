@@ -7,9 +7,12 @@
 </head>
 <body>
     <h1>Edit Todo</h1>
-    <form th:each="temp: ${todo}" th:action="@{/todo/update?upID=} + ${temp.id}" method="post">
-        <input type="checkbox" name="doneState" value="on"/> Maths
-        <input type="checkbox" name="urgentState" value="on"/> Physics
+    <form th:each="temp: ${todos}" method="post" th:action="@{/todo/update?upID=} + ${temp.id}"  th:if="${#numbers.formatInteger(param.upID,3)} == ${#numbers.formatInteger(temp.id,3)}" >
+        <input type="text" th:value="${temp.title}" th:name="newTitle"/>
+        <input type="checkbox" name="urgentState" value="true" th:checked="${temp.Urgent} ? 'checked'"/> Urgent
+        <input type="checkbox" name="doneState"  value="true" th:checked="${temp.Done} ? 'checked'"/> Done
+        <input type="submit" value="Update"/>
+        <a href="http://localhost:8080/todo/">Cancel</a>
     </form>
 </body>
 </html>

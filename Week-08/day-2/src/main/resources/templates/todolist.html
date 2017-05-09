@@ -17,6 +17,7 @@
             <th>Title</th>
             <th>Urgent</th>
             <th>Done</th>
+            <th>Edit</th>
             <th>Delete</th>
         </tr>
         <tr th:class="list" th:each="temp : ${todos}" th:if="${temp.Done == false}">
@@ -25,7 +26,7 @@
             <td th:text="${temp.Urgent}">urgent</td>
             <td th:text="${temp.Done}">done</td>
             <td>
-                <form th:action="@{/todo/edit?upID=} + ${temp.id}" th:object="${todos}" method="post">
+                <form th:action="@{/todo/edit?upID=} + ${temp.id}" th:object="${todos}" th:attr="id = ${temp.id}" method="post">
                     <input type="submit" th:name="delID" value="Edit"/>
                 </form>
             </td>

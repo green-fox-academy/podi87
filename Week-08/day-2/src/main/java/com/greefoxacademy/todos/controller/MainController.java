@@ -23,12 +23,12 @@ public class MainController {
     return "todolist";
   }
 
-//  @RequestMapping("/addToDo")
-//  public String addTodos(Model model,
-//                         @RequestParam(name = "todo", required = false, defaultValue = "New Todo") String newTodo){
-//    model.addAttribute(new ToDo(newTodo));
-//    return "todolist";
-//  }
+  @RequestMapping("/addToDo")
+  public String addTodos(Model model,
+                         @RequestParam(name = "newTodo", required = false) String newTodo){
+    toDoRepository.save(new ToDo(newTodo));
+    return "redirect:/todo/";
+  }
 
 
 }

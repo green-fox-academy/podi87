@@ -1,4 +1,4 @@
-package com.greenfoxacademy.postman;
+package com.greenfoxacademy.postman.doubling;
 
 
 public class Doubling {

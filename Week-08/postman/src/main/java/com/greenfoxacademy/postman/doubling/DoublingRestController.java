@@ -4,11 +4,11 @@ package com.greenfoxacademy.postman.doubling;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class RESTController {
+public class DoublingRestController {
 
   @ExceptionHandler(Exception.class)
-  public ErrorHandling message(Exception e) {
-    return new ErrorHandling("Please provide an input!");
+  public DoublingErrorHandling message(Exception e) {
+    return new DoublingErrorHandling("Please provide an input!");
   }
 
 

@@ -1,11 +1,11 @@
 package com.greenfoxacademy.postman.doubling;
 
 
-public class ErrorHandling {
+public class DoublingErrorHandling {
 
   String error;
 
-  public ErrorHandling(String error) {
+  public DoublingErrorHandling(String error) {
     this.error = error;
   }
 

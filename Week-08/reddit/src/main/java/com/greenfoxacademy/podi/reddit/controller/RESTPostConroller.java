@@ -4,10 +4,7 @@ import com.greenfoxacademy.podi.reddit.model.Post;
 import com.greenfoxacademy.podi.reddit.model.PostErrorHandling;
 import com.greenfoxacademy.podi.reddit.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -27,10 +24,15 @@ public class RESTPostConroller {
     return new PostErrorHandling("Please provide a number!");
   }
 
-  @RequestMapping(value = "/", method = RequestMethod.GET)
+  @RequestMapping(value = "/post", method = RequestMethod.GET)
   public Iterable<Post> listPost() {
-    postRepository.save(new Post("something_new", "www.youtube.com", new Timestamp(System.currentTimeMillis()/1000)));
     return postRepository.findAll();
+  }
 
+  @RequestMapping(value = "/post", method = RequestMethod.POST)
+  public Post addPost(@RequestBody() Post post) {
+    Post post1 = new Post(post.getTitle(),post.getHref());
+    postRepository.save(post1);
+    return post;
   }
 }

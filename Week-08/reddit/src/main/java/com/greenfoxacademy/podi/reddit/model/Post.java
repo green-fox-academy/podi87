@@ -35,10 +35,10 @@ public class Post {
 
   public Post(){}
 
-  public Post(String title, String href, Timestamp timestamp){
+  public Post(String title, String href){
     this.title = title;
     this.href = href;
-    this.timestamp = timestamp;
+    this.timestamp = new Timestamp(System.currentTimeMillis()/1000);
   }
 
   @Override

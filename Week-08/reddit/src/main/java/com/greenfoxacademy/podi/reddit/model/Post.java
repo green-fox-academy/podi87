@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "Posts")
@@ -26,8 +26,7 @@ public class Post {
   private String href;
 
   @Column(name = "Timestamp")
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Timestamp timestamp;
+  private Long timestamp;
 
   @Column(name = "Score")
   private int score;
@@ -38,8 +37,15 @@ public class Post {
   public Post(String title, String href){
     this.title = title;
     this.href = href;
-    this.timestamp = new Timestamp(System.currentTimeMillis()/1000);
+    this.timestamp = new Date().getTime()/1000;
   }
+
+//  public Post(String title, String href, int score) {
+//    this.title = title;
+//    this.href = href;
+//    this.timestamp =  new Date().getTime()/1000;
+//    this.score = score;
+//  }
 
   @Override
   public String toString(){

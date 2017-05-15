@@ -59,10 +59,10 @@ public class GuardianControllerTest {
   public void testWithoutGivenParameters() throws Exception {
     ResultActions perform = mockMvc.perform(get("/groot"))
             .andDo(print())
-            .andExpect(status().isOk())
+            .andExpect(status().isNoContent())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.error").value("I am Groot!"));
-    
+
   }
 
 }
